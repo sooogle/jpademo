@@ -1,7 +1,5 @@
 package com.github.sooogle.jpademo.entity;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,10 +22,6 @@ public class Pet {
     private Integer id;
 
     private String name;
-
-    // TODO: PetDetailに移動してOneToOneの説明に使う
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")

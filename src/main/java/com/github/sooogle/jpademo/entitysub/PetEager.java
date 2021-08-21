@@ -1,7 +1,7 @@
-package com.github.sooogle.jpademo.entity;
+package com.github.sooogle.jpademo.entitysub;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
+import com.github.sooogle.jpademo.entity.Owner;
+import com.github.sooogle.jpademo.entity.Type;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+// @ManyToOne(fetch = FetchType.EAGER)の動作説明用
 @Getter
 @Setter
 @Entity
@@ -24,10 +25,6 @@ public class PetEager {
     private Integer id;
 
     private String name;
-
-    // TODO: PetDetailに移動してOneToOneの説明に使う
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")

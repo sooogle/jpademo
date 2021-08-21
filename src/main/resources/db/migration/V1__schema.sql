@@ -1,12 +1,12 @@
 -- https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/h2/schema.sql
-DROP TABLE vet_specialties IF EXISTS;
-DROP TABLE vets IF EXISTS;
-DROP TABLE specialties IF EXISTS;
-DROP TABLE visits IF EXISTS;
-DROP TABLE pets IF EXISTS;
-DROP TABLE types IF EXISTS;
-DROP TABLE owners IF EXISTS;
-
+DROP TABLE IF EXISTS vet_specialties;
+DROP TABLE IF EXISTS vets;
+DROP TABLE IF EXISTS specialties;
+DROP TABLE IF EXISTS visits;
+DROP TABLE IF EXISTS pets;
+DROP TABLE IF EXISTS pet_details;
+DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS owners;
 
 CREATE TABLE vets
 (
@@ -55,7 +55,6 @@ CREATE TABLE pets
 (
     id         INTEGER IDENTITY PRIMARY KEY,
     name       VARCHAR(30),
-    birth_date DATE,
     type_id    INTEGER NOT NULL,
     owner_id   INTEGER NOT NULL
 );
@@ -64,6 +63,14 @@ ALTER TABLE pets
 ALTER TABLE pets
     ADD CONSTRAINT fk_pets_types FOREIGN KEY (type_id) REFERENCES types (id);
 CREATE INDEX pets_name ON pets (name);
+
+CREATE TABLE pet_details
+(
+    pet_id     INTEGER PRIMARY KEY,
+    birth_date DATE NOT NULL
+);
+ALTER TABLE pet_details
+    ADD CONSTRAINT fk_pet_details_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 
 CREATE TABLE visits
 (
