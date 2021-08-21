@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:jpa;MODE=PostgreSQL
+    driverClassName: org.h2.Driver
+  jpa:
+    database: h2
+    properties:
+      hibernate:
+        format_sql: true

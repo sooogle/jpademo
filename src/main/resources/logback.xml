@@ -1,0 +1,16 @@
+<configuration>
+  <appender name="TEXT" class="ch.qos.logback.core.ConsoleAppender">
+    <withJansi>true</withJansi>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%cyan(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor" level="WARN"/>
+  <logger name="org.hibernate.SQL" level="DEBUG"/>
+  <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+
+  <root level="INFO">
+    <appender-ref ref="TEXT"/>
+  </root>
+</configuration>
