@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@DisplayName("3. OneToManyの関連を伴うクエリ")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class OneToManyTest {
 
@@ -20,9 +21,9 @@ public class OneToManyTest {
     EntityManager em;
 
     @Test
-    @DisplayName("1-1. OneToManyの関連エンティティを単にJOIN FETCHすると、子側のレコードの数だけ親側のレコードが増幅する")
+    @DisplayName("3.1. OneToManyの関連エンティティを単にJOIN FETCHすると、子側のレコードの数だけ親側のレコードが増幅する")
     void testJoinFetch() {
-        String jpql = "select o from Owner o inner join fetch o.pets";
+        String jpql = "SELECT o FROM Owner o INNER JOIN FETCH o.pets";
         List<Owner> owners = em.createQuery(jpql, Owner.class).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner + " pets = " + owner.getPets());
@@ -31,9 +32,9 @@ public class OneToManyTest {
     }
 
     @Test
-    @DisplayName("1-2. OneToManyの関連エンティティをJOIN FETCHする場合、DISTINCTすると親エンティティ単位で集約される")
+    @DisplayName("3.2. OneToManyの関連エンティティをJOIN FETCHする場合、DISTINCTすると親エンティティ単位で集約される")
     void testJoinFetchDistinct() {
-        String jpql = "select distinct o from Owner o inner join fetch o.pets";
+        String jpql = "SELECT DISTINCT o FROM Owner o INNER JOIN FETCH o.pets";
         List<Owner> owners = em.createQuery(jpql, Owner.class).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner + " pets = " + owner.getPets());
@@ -48,10 +49,10 @@ public class OneToManyTest {
     // https://stackoverflow.com/questions/30088649/how-to-use-multiple-join-fetch-in-one-jpql-query/30093606#30093606
 
     @Test
-    @DisplayName("2-1. OneToManyの関連エンティティを検索条件にする（EXISTSを利用）")
+    @DisplayName("3.3. OneToManyの関連エンティティを検索条件にする（EXISTSを利用）")
     void testWhereExists() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        String jpql = "select o from Owner o where exists (select 1 from Pet p where p.owner = o and p.type.id = :typeId)";
+        String jpql = "SELECT o FROM Owner o WHERE EXISTS (SELECT 1 FROM Pet p WHERE p.owner = o AND p.type.id = :typeId)";
         List<Owner> owners = em.createQuery(jpql, Owner.class).setParameter("typeId", 1).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner);
@@ -59,10 +60,10 @@ public class OneToManyTest {
     }
 
     @Test
-    @DisplayName("2-2. OneToManyの関連エンティティを検索条件にする（INを利用）")
+    @DisplayName("3.4. OneToManyの関連エンティティを検索条件にする（INを利用）")
     void testWhereIn() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        String jpql = "select o from Owner o where o.id in (select p.owner.id from Pet p where p.type.id = :typeId)";
+        String jpql = "SELECT o FROM Owner o WHERE o.id IN (SELECT p.owner.id FROM Pet p WHERE p.type.id = :typeId)";
         List<Owner> owners = em.createQuery(jpql, Owner.class).setParameter("typeId", 1).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner);

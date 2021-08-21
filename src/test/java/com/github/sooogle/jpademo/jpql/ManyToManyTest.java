@@ -9,16 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@DisplayName("4. ManyToManyの関連を伴うクエリ")
 public class ManyToManyTest {
 
     @Autowired
     EntityManager em;
 
     @Test
-    @DisplayName("ManyToManyの関連エンティティを検索条件にする")
+    @DisplayName("4.1. ManyToManyの関連エンティティを検索条件にする")
     void testWhereExists() {
         // id = 2のSpecialtyを持つVet (獣医) を検索
-        String jpql = "select v from Vet v where exists (select 1 from Specialty s where s member of v.specialities and s.id = :id)";
+        String jpql = "SELECT v FROM Vet v WHERE EXISTS (SELECT 1 FROM Specialty s WHERE s MEMBER OF v.specialities AND s.id = :id)";
         List<Vet> vets = em.createQuery(jpql, Vet.class).setParameter("id", 2).getResultList();
         vets.forEach(vet -> System.out.println("vet = " + vet));
     }
