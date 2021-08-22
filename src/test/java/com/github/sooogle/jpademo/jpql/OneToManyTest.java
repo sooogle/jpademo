@@ -48,6 +48,8 @@ public class OneToManyTest {
     // Hibernateでは `org.hibernate.loader.MultipleBagFetchException` が発生する
     // https://stackoverflow.com/questions/30088649/how-to-use-multiple-join-fetch-in-one-jpql-query/30093606#30093606
 
+    // 注3. 関連エンティティの絞り込みはクエリ上ではできない（Hibernate固有機能で@Whereをエンティティに付与するという手はある）
+
     @Test
     @DisplayName("3.3. OneToManyの関連エンティティを検索条件にする（EXISTSを利用）")
     void testWhereExists() {

@@ -33,6 +33,8 @@ public class BasicTest {
         }
     }
 
+    // SELECT エイリアス FROM エンティティ名 エイリアス [WHERE ...] [ORDER BY ...]
+
     @Test
     @DisplayName("1.2. nameが'L'で始まるPetを全件取得")
     void testFindByNameStartsWith() {
@@ -44,7 +46,18 @@ public class BasicTest {
         }
     }
 
-    // 比較演算子は =, <, >, <=, >=, LIKE, BETWEEN, INなどSQLでよく使うものは基本的にある
+    // 比較演算子は =, <>, <, >, <=, >=, LIKE, BETWEEN, INなど
+    // Hibernate ユーザーガイド [Relational comparisons](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#hql-conditional-expressions)
+
+    // JPQLでサポートされている関数
+    // - 文字列 CONCAT, SUBSTRING, UPPER, LOWER, TRIM, LENGTH, LOCATE
+    // - 算術 ABS, MOD, SQRT
+    // - 時刻 CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+    // Hibernate ユーザーガイド [JPQL standardized functions](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#jpql-standardized-functions)
+
+    // 大文字小文字を無視するなら
+    // SELECT p FROM Pet p WHERE LOWER(p.name) LIKE :name
+    // として、setParameter("name", "l%")とする
 
     //// getSingleResult
 
@@ -88,5 +101,7 @@ public class BasicTest {
     }
 
     // `EntityManager.find` は結果が存在しない場合nullを返す
+
+    // Streamを返すgetResultStreamもある
 
 }

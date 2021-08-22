@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entity.Pet;
-import com.github.sooogle.jpademo.entitysub.PetEager;
 import com.github.sooogle.jpademo.entity.Visit;
+import com.github.sooogle.jpademo.entitysub.PetEager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Tuple;
