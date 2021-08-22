@@ -25,7 +25,8 @@ public class BasicTest {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
         // SELECT p FROM Pet p WHERE p.name LIKE :name ORDER BY p.name ASC
-        List<Pet> pets = query.select(p).from(p)
+        List<Pet> pets = query.select(p)
+            .from(p)
             .where(p.name.startsWith("L"))
             .orderBy(p.name.asc())
             .fetch();
@@ -33,6 +34,56 @@ public class BasicTest {
             System.out.println("pet = " + pet);
         }
     }
+
+    @Test
+    @DisplayName("WHERE句のAND条件1")
+    void testWhere1() {
+        JPAQuery<Pet> query = new JPAQuery<>(em);
+        QPet p = QPet.pet;
+        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        List<Pet> pets = query.select(p)
+            .from(p)
+            .where(
+                p.name.eq("Lucky"),
+                p.type.id.eq(2)
+            )
+            .fetch();
+        for (Pet pet : pets) {
+            System.out.println("pet = " + pet);
+        }
+    }
+
+    @Test
+    @DisplayName("WHERE句のAND条件2")
+    void testWhere2() {
+        JPAQuery<Pet> query = new JPAQuery<>(em);
+        QPet p = QPet.pet;
+        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        List<Pet> pets = query.select(p)
+            .from(p)
+            .where(p.name.eq("Lucky").and(p.type.id.eq(2)))
+            .fetch();
+        for (Pet pet : pets) {
+            System.out.println("pet = " + pet);
+        }
+    }
+
+    @Test
+    @DisplayName("WHERE句のAND条件3")
+    void testWhere3() {
+        JPAQuery<Pet> query = new JPAQuery<>(em);
+        QPet p = QPet.pet;
+        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        List<Pet> pets = query.select(p)
+            .from(p)
+            .where(p.name.eq("Lucky"))
+            .where(p.type.id.eq(2))
+            .fetch();
+        for (Pet pet : pets) {
+            System.out.println("pet = " + pet);
+        }
+    }
+
 
     @Test
     @DisplayName("結果が1件の場合はfetchOneメソッドを使う")
