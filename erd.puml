@@ -1,0 +1,74 @@
+@startuml
+' configure font
+skinparam defaultFontName SansSerif
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity PETS {
+  ID
+  --
+  NAME
+  TYPE_ID [FK]
+  OWNER_ID [FK]
+}
+
+entity TYPES {
+  ID
+  --
+  NAME
+}
+
+entity OWNERS {
+  ID
+  --
+  FIRST_NAME
+  LAST_NAME
+  ADDRESS
+  CITY
+  TELEPHONE
+}
+
+entity VISITS {
+  ID
+  --
+  PET_ID [FK]
+  VISIT_DATE
+  DESCRIPTION
+}
+
+entity PET_DETAILS {
+  PET_ID [FK]
+  --
+  BIRTH_DATE
+}
+
+entity VETS {
+  ID
+  --
+  FIRST_NAME
+  LAST_NAME
+}
+
+entity SPECIALTIES {
+  ID
+  --
+  NAME
+}
+
+entity VET_SPECIALTIES {
+  VET_ID [FK]
+  SPECIALTY_ID [FK]
+}
+
+PETS }o..|| TYPES
+PETS }o..|| OWNERS
+PETS ||..o{ VISITS
+PETS ||..o| PET_DETAILS
+VETS ||..o{ VET_SPECIALTIES
+SPECIALTIES ||..o{ VET_SPECIALTIES
+
+@enduml
