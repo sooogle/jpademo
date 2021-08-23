@@ -99,7 +99,7 @@ public class ManyToOneTest {
         List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN p.owner", Pet.class).getResultList();
         assertThatThrownBy(() -> {
             for (Pet pet : pets) {
-                System.out.println("pet = " + pet);
+                System.out.println("pet = " + pet + ", owner=" + pet.getOwner());
             }
         }).isInstanceOf(LazyInitializationException.class);
     }
