@@ -97,8 +97,11 @@ public class ManyToOneTest {
     @DisplayName("2.6. 無印のJOINをしてもSELECT句に結合したテーブルは含まれない")
     void testJoin() {
         List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN p.owner", Pet.class).getResultList();
-        assertThatThrownBy(() -> System.out.println(pets.get(0).getOwner()))
-            .isInstanceOf(LazyInitializationException.class);
+        assertThatThrownBy(() -> {
+            for (Pet pet : pets) {
+                System.out.println("pet = " + pet);
+            }
+        }).isInstanceOf(LazyInitializationException.class);
     }
 
     @Test

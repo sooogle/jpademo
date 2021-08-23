@@ -1,5 +1,6 @@
 package com.github.sooogle.jpademo.jpql;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.github.sooogle.jpademo.entity.Pet;
@@ -31,6 +32,7 @@ public class BasicTest {
         for (Pet pet : pets) {
             System.out.println("pet = " + pet);
         }
+        assertThat(pets).isNotEmpty();
     }
 
     // SELECT エイリアス FROM エンティティ名 エイリアス [WHERE ...] [ORDER BY ...]
@@ -44,6 +46,7 @@ public class BasicTest {
         for (Pet pet : pets) {
             System.out.println("pet = " + pet);
         }
+        assertThat(pets).allMatch(pet -> pet.getName().startsWith("L"));
     }
 
     // 比較演算子は =, <>, <, >, <=, >=, LIKE, BETWEEN, INなど
@@ -68,6 +71,7 @@ public class BasicTest {
             .setParameter("name", "Leo")
             .getSingleResult();
         System.out.println("pet = " + pet);
+        assertThat(pet.getName()).isEqualTo("Leo");
     }
 
     @Test
@@ -88,6 +92,7 @@ public class BasicTest {
             .setMaxResults(1)
             .getSingleResult();
         System.out.println("pet = " + pet);
+        assertThat(pet.getName()).isEqualTo("Lucky");
     }
 
     @Test
