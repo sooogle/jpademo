@@ -8,13 +8,13 @@ import com.github.sooogle.jpademo.entity.Visit;
 import com.github.sooogle.jpademo.entitysub.PetEager;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class ManyToOneTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     //// N+1問題の説明

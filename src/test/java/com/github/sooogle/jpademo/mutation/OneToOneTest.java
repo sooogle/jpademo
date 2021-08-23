@@ -9,16 +9,16 @@ import com.github.sooogle.jpademo.entity.Type;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 public class OneToOneTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @Test

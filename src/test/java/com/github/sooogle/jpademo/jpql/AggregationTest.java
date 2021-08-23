@@ -4,12 +4,12 @@ import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entitysub.OwnerAndCountDTO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class AggregationTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @Test
