@@ -6,6 +6,7 @@ import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entity.Pet;
 import com.github.sooogle.jpademo.entity.Visit;
 import com.github.sooogle.jpademo.entitysub.PetEager;
+import com.github.sooogle.jpademo.entitysub.PetNoRelation;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -119,10 +120,10 @@ public class ManyToOneTest {
     @Test
     @DisplayName("2.8. JOIN ONを利用するとリレーションを張っていないテーブルも取得できる")
     void testJoinOn() {
-        String jpql = "SELECT p, o FROM Pet p INNER JOIN Owner o ON o.id = p.owner.id";
+        String jpql = "SELECT p, o FROM PetNoRelation p INNER JOIN Owner o ON o.id = p.ownerId";
         List<Tuple> tuples = em.createQuery(jpql, Tuple.class).getResultList();
         for (Tuple tuple : tuples) {
-            System.out.println("pet = " + tuple.get(0, Pet.class) + ", owner = " + tuple.get(1, Owner.class));
+            System.out.println("pet = " + tuple.get(0, PetNoRelation.class) + ", owner = " + tuple.get(1, Owner.class));
         }
     }
 
