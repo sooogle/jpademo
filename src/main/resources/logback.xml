@@ -7,7 +7,6 @@
   </appender>
 
   <logger name="org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor" level="WARN"/>
-  <logger name="org.hibernate.SQL" level="DEBUG"/>
   <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
 
   <root level="INFO">

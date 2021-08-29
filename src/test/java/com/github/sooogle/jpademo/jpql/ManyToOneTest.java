@@ -11,15 +11,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
-import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 @DisplayName("2. ManyToOneの関連を伴うクエリ")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class ManyToOneTest {
@@ -29,8 +27,6 @@ public class ManyToOneTest {
 
     //// N+1問題の説明
 
-    // getOwner実行時にクエリが発行されるのでトランザクションを切る必要がある
-    @Transactional(readOnly = true)
     @Test
     @DisplayName("2.1. N+1問題が発生している例")
     void testNPlusOneProblem() {
@@ -74,8 +70,6 @@ public class ManyToOneTest {
         }
     }
 
-    // getType実行時にクエリが発行されるのでトランザクションを切る必要がある
-    @Transactional(readOnly = true)
     @Test
     @DisplayName("2.5. FetchType.EAGERとFetchType.LAZYの違い")
     void testEager() {
@@ -93,16 +87,13 @@ public class ManyToOneTest {
 
     //// JOIN - 結合したエンティティをWHERE句のみで利用する
 
-    // `@Transactional` を付与していないので、`org.hibernate.LazyInitializationException` が発生する
     @Test
     @DisplayName("2.6. 無印のJOINをしてもSELECT句に結合したテーブルは含まれない")
     void testJoin() {
         List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN p.owner", Pet.class).getResultList();
-        assertThatThrownBy(() -> {
-            for (Pet pet : pets) {
-                System.out.println("pet = " + pet + ", owner=" + pet.getOwner());
-            }
-        }).isInstanceOf(LazyInitializationException.class);
+        for (Pet pet : pets) {
+            System.out.println("pet = " + pet + ", owner=" + pet.getOwner());
+        }
     }
 
     @Test

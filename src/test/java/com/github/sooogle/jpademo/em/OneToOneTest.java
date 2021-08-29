@@ -1,4 +1,4 @@
-package com.github.sooogle.jpademo.mutation;
+package com.github.sooogle.jpademo.em;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,10 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 public class OneToOneTest {
 
     @PersistenceContext
@@ -32,7 +31,6 @@ public class OneToOneTest {
 
     @Test
     @DisplayName("OneToOneの関連に@MapsIdを付与すると、関連エンティティとPKを共有する")
-    @Transactional
     void testMapsId() {
         var pet = new Pet();
         pet.setName("Tama");
