@@ -6,30 +6,27 @@ import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entity.Pet;
 import com.github.sooogle.jpademo.entity.Visit;
 import com.github.sooogle.jpademo.entitysub.PetEager;
+import com.github.sooogle.jpademo.entitysub.PetNoRelation;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
-import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 @DisplayName("2. ManyToOneの関連を伴うクエリ")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class ManyToOneTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     //// N+1問題の説明
 
-    // getOwner実行時にクエリが発行されるのでトランザクションを切る必要がある
-    @Transactional(readOnly = true)
     @Test
     @DisplayName("2.1. N+1問題が発生している例")
     void testNPlusOneProblem() {
@@ -73,8 +70,6 @@ public class ManyToOneTest {
         }
     }
 
-    // getType実行時にクエリが発行されるのでトランザクションを切る必要がある
-    @Transactional(readOnly = true)
     @Test
     @DisplayName("2.5. FetchType.EAGERとFetchType.LAZYの違い")
     void testEager() {
@@ -92,13 +87,13 @@ public class ManyToOneTest {
 
     //// JOIN - 結合したエンティティをWHERE句のみで利用する
 
-    // `@Transactional` を付与していないので、`org.hibernate.LazyInitializationException` が発生する
     @Test
     @DisplayName("2.6. 無印のJOINをしてもSELECT句に結合したテーブルは含まれない")
     void testJoin() {
         List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN p.owner", Pet.class).getResultList();
-        assertThatThrownBy(() -> System.out.println(pets.get(0).getOwner()))
-            .isInstanceOf(LazyInitializationException.class);
+        for (Pet pet : pets) {
+            System.out.println("pet = " + pet + ", owner=" + pet.getOwner());
+        }
     }
 
     @Test
@@ -116,10 +111,10 @@ public class ManyToOneTest {
     @Test
     @DisplayName("2.8. JOIN ONを利用するとリレーションを張っていないテーブルも取得できる")
     void testJoinOn() {
-        String jpql = "SELECT p, o FROM Pet p INNER JOIN Owner o ON o.id = p.owner.id";
+        String jpql = "SELECT p, o FROM PetNoRelation p INNER JOIN Owner o ON o.id = p.ownerId";
         List<Tuple> tuples = em.createQuery(jpql, Tuple.class).getResultList();
         for (Tuple tuple : tuples) {
-            System.out.println("pet = " + tuple.get(0, Pet.class) + ", owner = " + tuple.get(1, Owner.class));
+            System.out.println("pet = " + tuple.get(0, PetNoRelation.class) + ", owner = " + tuple.get(1, Owner.class));
         }
     }
 

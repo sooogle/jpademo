@@ -5,19 +5,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.github.sooogle.jpademo.entity.Owner;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 @DisplayName("3. OneToManyの関連を伴うクエリ")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class OneToManyTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @Test

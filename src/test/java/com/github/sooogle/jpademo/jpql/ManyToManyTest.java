@@ -3,16 +3,16 @@ package com.github.sooogle.jpademo.jpql;
 import com.github.sooogle.jpademo.entity.Vet;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 @DisplayName("4. ManyToManyの関連を伴うクエリ")
 public class ManyToManyTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @Test
@@ -21,7 +21,9 @@ public class ManyToManyTest {
         // id = 2のSpecialtyを持つVet (獣医) を検索
         String jpql = "SELECT v FROM Vet v WHERE EXISTS (SELECT 1 FROM Specialty s WHERE s MEMBER OF v.specialities AND s.id = :id)";
         List<Vet> vets = em.createQuery(jpql, Vet.class).setParameter("id", 2).getResultList();
-        vets.forEach(vet -> System.out.println("vet = " + vet));
+        for (Vet vet : vets) {
+            System.out.println("vet = " + vet);
+        }
     }
 
 }
