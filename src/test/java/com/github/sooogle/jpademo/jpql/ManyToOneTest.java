@@ -43,7 +43,7 @@ public class ManyToOneTest {
     @Test
     @DisplayName("2.2. 関連エンティティをJOIN FETCHすると1つのSQLで取得できる")
     void testJoinFetch() {
-        List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN FETCH p.owner ", Pet.class).getResultList();
+        List<Pet> pets = em.createQuery("SELECT p FROM Pet p INNER JOIN FETCH p.owner", Pet.class).getResultList();
         for (Pet pet : pets) {
             System.out.println("pet = " + pet + ", owner=" + pet.getOwner());
         }

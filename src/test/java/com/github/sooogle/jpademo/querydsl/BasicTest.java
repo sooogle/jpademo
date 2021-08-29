@@ -8,15 +8,15 @@ import com.github.sooogle.jpademo.entity.QPet;
 import com.querydsl.jpa.impl.JPAQuery;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@SpringBootTest
+@DataJpaTest
 public class BasicTest {
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @Test
