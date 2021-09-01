@@ -24,7 +24,10 @@ public class BasicTest {
     void testFindAll() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name LIKE :name ORDER BY p.name ASC
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name LIKE 'L%'
+        // ORDER BY p.name ASC
         List<Pet> pets = query.select(p)
             .from(p)
             .where(p.name.startsWith("L"))
@@ -40,7 +43,10 @@ public class BasicTest {
     void testWhere1() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = 'Lucky'
+        //   AND p.type.id = 2
         List<Pet> pets = query.select(p)
             .from(p)
             .where(
@@ -58,7 +64,10 @@ public class BasicTest {
     void testWhere2() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = 'Lucky'
+        //   AND p.type.id = 2
         List<Pet> pets = query.select(p)
             .from(p)
             .where(p.name.eq("Lucky").and(p.type.id.eq(2)))
@@ -73,7 +82,10 @@ public class BasicTest {
     void testWhere3() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name AND p.type.id = :id
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = 'Lucky'
+        //   AND p.type.id = 2
         List<Pet> pets = query.select(p)
             .from(p)
             .where(p.name.eq("Lucky"))
@@ -90,8 +102,13 @@ public class BasicTest {
     void testFindOne() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name
-        Pet pet = query.select(p).from(p).where(p.name.eq("Leo")).fetchOne();
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = 'Lucky'
+        Pet pet = query.select(p)
+            .from(p)
+            .where(p.name.eq("Leo"))
+            .fetchOne();
         System.out.println("pet = " + pet);
     }
 
@@ -100,9 +117,14 @@ public class BasicTest {
     void testNonUniqueResult() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name
-        assertThatThrownBy(() -> query.select(p).from(p).where(p.name.eq("Lucky")).fetchOne())
-            .isInstanceOf(com.querydsl.core.NonUniqueResultException.class);
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = 'Lucky'
+        assertThatThrownBy(() -> query.select(p)
+            .from(p)
+            .where(p.name.eq("Lucky"))
+            .fetchOne()
+        ).isInstanceOf(com.querydsl.core.NonUniqueResultException.class);
     }
 
     @Test
@@ -110,7 +132,9 @@ public class BasicTest {
     void testFindFirst() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = :name
         Pet pet = query.select(p).from(p).where(p.name.eq("Lucky")).fetchFirst();
         System.out.println("pet = " + pet);
     }
@@ -120,7 +144,9 @@ public class BasicTest {
     void testNoResult() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p WHERE p.name = :name
+        // SELECT p
+        // FROM Pet p
+        // WHERE p.name = :name
         Pet pet = query.select(p).from(p).where(p.name.eq("Hoge")).fetchFirst();
         System.out.println("pet = " + pet);
         assertThat(pet).isNull();
