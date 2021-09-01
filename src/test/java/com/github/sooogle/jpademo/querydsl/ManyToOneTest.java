@@ -25,10 +25,12 @@ public class ManyToOneTest {
 
     @Test
     @DisplayName("ManyToOneのJOIN FETCH")
-    void testJoinFetch() {
+    void testDistinct() {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p INNER JOIN FETCH p.owner
+        // SELECT p
+        // FROM Pet p
+        // INNER JOIN FETCH p.owner
         List<Pet> pets = query.select(p)
             .from(p)
             .innerJoin(p.owner).fetchJoin()
@@ -44,7 +46,10 @@ public class ManyToOneTest {
         JPAQuery<Pet> query = new JPAQuery<>(em);
         QVisit v = QVisit.visit;
         QPet p = QPet.pet;
-        // SELECT v FROM Visit v INNER JOIN FETCH v.pet p INNER JOIN FETCH p.owner
+        // SELECT v
+        // FROM Visit v
+        // INNER JOIN FETCH v.pet p
+        // INNER JOIN FETCH p.owner
         List<Visit> visits = query.select(v)
             .from(v)
             .innerJoin(v.pet, p).fetchJoin()
@@ -61,7 +66,10 @@ public class ManyToOneTest {
     void testJoin() {
         JPAQuery<Tuple> query = new JPAQuery<>(em);
         QPet p = QPet.pet;
-        // SELECT p FROM Pet p INNER JOIN p.owner WHERE p.owner.firstName = :firstName
+        // SELECT p
+        // FROM Pet p
+        // INNER JOIN p.owner
+        // WHERE p.owner.firstName = :firstName
         List<Pet> pets = query.select(p)
             .from(p)
             .innerJoin(p.owner)
@@ -78,7 +86,9 @@ public class ManyToOneTest {
         JPAQuery<Tuple> query = new JPAQuery<>(em);
         QPetNoRelation p = QPetNoRelation.petNoRelation;
         QOwner o = QOwner.owner;
-        // SELECT p, o FROM PetNoRelation p INNER JOIN Owner o ON o.id = p.ownerId
+        // SELECT p, o
+        // FROM PetNoRelation p
+        // INNER JOIN Owner o ON o.id = p.ownerId
         List<Tuple> tuples = query.select(p, o)
             .from(p)
             .innerJoin(o).on(o.id.eq(p.ownerId))
