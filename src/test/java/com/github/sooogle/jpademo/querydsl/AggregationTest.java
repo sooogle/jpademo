@@ -6,7 +6,8 @@ import com.github.sooogle.jpademo.entity.QPet;
 import com.github.sooogle.jpademo.entitysub.OwnerAndCountDTO;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,14 +24,14 @@ public class AggregationTest {
     @Test
     @DisplayName("COUNT ~ GROUP BYによる件数取得")
     void testGroupBy() {
-        JPAQuery<Owner> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QOwner o = QOwner.owner;
         QPet p = QPet.pet;
-        // SELECT o, COUNT(o)
+        // SELECT o, COUNT(p)
         // FROM Owner o
         // LEFT JOIN Pet p ON p.owner.id = o.id
         // GROUP BY o
-        List<Tuple> results = query.select(o, o.count())
+        List<Tuple> results = query.select(o, p.count())
             .from(o)
             .leftJoin(p).on(p.owner.id.eq(o.id))
             .groupBy(o)
@@ -43,14 +44,14 @@ public class AggregationTest {
     @Test
     @DisplayName("コンストラクタ式を利用したDTOへの結果マッピング")
     void testConstructorExpression() {
-        JPAQuery<Owner> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QOwner o = QOwner.owner;
         QPet p = QPet.pet;
-        // SELECT new com.github.sooogle.jpademo.entitysub.OwnerAndCountDTO(o, COUNT(o))
+        // SELECT new com.github.sooogle.jpademo.entitysub.OwnerAndCountDTO(o, COUNT(p))
         // FROM Owner o
         // LEFT JOIN Pet p ON p.owner.id = o.id
         // GROUP BY o
-        List<OwnerAndCountDTO> dtos = query.select(Projections.constructor(OwnerAndCountDTO.class, o, o.count()))
+        List<OwnerAndCountDTO> dtos = query.select(Projections.constructor(OwnerAndCountDTO.class, o, p.count()))
             .from(o)
             .leftJoin(p).on(p.owner.id.eq(o.id))
             .groupBy(o)

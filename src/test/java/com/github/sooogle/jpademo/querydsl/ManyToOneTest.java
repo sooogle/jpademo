@@ -9,7 +9,8 @@ import com.github.sooogle.jpademo.entity.Visit;
 import com.github.sooogle.jpademo.entitysub.PetNoRelation;
 import com.github.sooogle.jpademo.entitysub.QPetNoRelation;
 import com.querydsl.core.Tuple;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,13 +27,12 @@ public class ManyToOneTest {
     @Test
     @DisplayName("ManyToOneのJOIN FETCH")
     void testDistinct() {
-        JPAQuery<Pet> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QPet p = QPet.pet;
         // SELECT p
         // FROM Pet p
         // INNER JOIN FETCH p.owner
-        List<Pet> pets = query.select(p)
-            .from(p)
+        List<Pet> pets = query.selectFrom(p)
             .innerJoin(p.owner).fetchJoin()
             .fetch();
         for (Pet pet : pets) {
@@ -43,15 +43,14 @@ public class ManyToOneTest {
     @Test
     @DisplayName("ネストしたJOIN FETCH")
     void testNestedJoinFetch() {
-        JPAQuery<Pet> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QVisit v = QVisit.visit;
         QPet p = QPet.pet;
         // SELECT v
         // FROM Visit v
         // INNER JOIN FETCH v.pet p
         // INNER JOIN FETCH p.owner
-        List<Visit> visits = query.select(v)
-            .from(v)
+        List<Visit> visits = query.selectFrom(v)
             .innerJoin(v.pet, p).fetchJoin()
             .innerJoin(p.owner).fetchJoin()
             .fetch();
@@ -64,14 +63,13 @@ public class ManyToOneTest {
     @Test
     @DisplayName("ManyToOneのJOIN")
     void testJoin() {
-        JPAQuery<Tuple> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QPet p = QPet.pet;
         // SELECT p
         // FROM Pet p
         // INNER JOIN p.owner
         // WHERE p.owner.firstName = :firstName
-        List<Pet> pets = query.select(p)
-            .from(p)
+        List<Pet> pets = query.selectFrom(p)
             .innerJoin(p.owner)
             .where(p.owner.firstName.eq("George"))
             .fetch();
@@ -83,7 +81,7 @@ public class ManyToOneTest {
     @Test
     @DisplayName("ManyToOneのJOIN ON")
     void testJoinOn() {
-        JPAQuery<Tuple> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QPetNoRelation p = QPetNoRelation.petNoRelation;
         QOwner o = QOwner.owner;
         // SELECT p, o

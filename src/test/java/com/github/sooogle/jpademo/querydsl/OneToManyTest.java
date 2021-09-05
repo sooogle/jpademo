@@ -4,7 +4,8 @@ import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entity.QOwner;
 import com.github.sooogle.jpademo.entity.QPet;
 import com.querydsl.jpa.JPAExpressions;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,13 +22,13 @@ public class OneToManyTest {
     @Test
     @DisplayName("OneToManyをJOIN FETCHしてDISTINCT")
     void testJoinFetch() {
-        JPAQuery<Owner> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QOwner o = QOwner.owner;
         // SELECT DISTINCT o
         // FROM Owner o
         // INNER JOIN FETCH o.pets
-        List<Owner> owners = query.select(o)
-            .from(o)
+        List<Owner> owners = query.selectFrom(o)
+            .distinct()
             .innerJoin(o.pets).fetchJoin()
             .fetch();
         for (Owner owner : owners) {
@@ -39,7 +40,7 @@ public class OneToManyTest {
     @DisplayName("EXISTSを使ってOneToManyの関連エンティティを検索条件にする")
     void testWhereExists() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        JPAQuery<Owner> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QOwner o = QOwner.owner;
         QPet p = QPet.pet;
         // SELECT o
@@ -50,15 +51,16 @@ public class OneToManyTest {
         //   WHERE p.owner.id = o.id
         //     AND p.type.id = 1
         // )
-        List<Owner> owners = query.select(o)
-            .from(o)
-            .where(JPAExpressions.selectOne()
+        List<Owner> owners = query.selectFrom(o)
+            .where(
+                JPAExpressions.selectOne()
                 .from(p)
                 .where(
                     p.owner.id.eq(o.id),
                     p.type.id.eq(1)
                 )
-                .exists())
+                .exists()
+            )
             .fetch();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner);
@@ -69,7 +71,7 @@ public class OneToManyTest {
     @DisplayName("INを使ってOneToManyの関連エンティティを検索条件にする")
     void testWhereIn() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        JPAQuery<Owner> query = new JPAQuery<>(em);
+        JPQLQueryFactory query = new JPAQueryFactory(em);
         QOwner o = QOwner.owner;
         QPet p = QPet.pet;
         // SELECT o
@@ -79,8 +81,7 @@ public class OneToManyTest {
         //   FROM Pet p
         //   WHERE p.type.id = 1
         // )
-        List<Owner> owners = query.select(o)
-            .from(o)
+        List<Owner> owners = query.selectFrom(o)
             .where(o.id.in(
                 JPAExpressions.select(p.owner.id)
                     .from(p)
