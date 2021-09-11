@@ -30,9 +30,9 @@ public class ManyToOneTest {
     @Test
     @DisplayName("2.1. N+1問題が発生している例")
     void testNPlusOneProblem() {
-        List<Pet> pets = em.createQuery("SELECT p FROM Pet p", Pet.class).getResultList();
-        System.out.println("=== ↑petsテーブルへのselect文のみが実行される ===");
-        System.out.println("=== ↓getOwnerを実行したタイミングでownersテーブルへのselectが実行される ===");
+        List<Pet> pets = em.createQuery("SELECT p FROM Pet p", Pet.class)
+            .getResultList();
+        System.out.println("=== getResultList が実行された ===");
         for (Pet pet : pets) {
             System.out.println("pet = " + pet + ", owner = " + pet.getOwner());
         }
