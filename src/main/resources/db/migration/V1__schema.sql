@@ -69,8 +69,6 @@ CREATE TABLE pet_details
     pet_id     INTEGER PRIMARY KEY,
     birth_date DATE NOT NULL
 );
-ALTER TABLE pet_details
-    ADD CONSTRAINT fk_pet_details_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 
 CREATE TABLE visits
 (

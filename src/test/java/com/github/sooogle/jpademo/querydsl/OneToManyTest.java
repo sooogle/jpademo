@@ -49,7 +49,7 @@ public class OneToManyTest {
         //   SELECT 1
         //   FROM Pet p
         //   WHERE p.owner.id = o.id
-        //     AND p.type.id = 1
+        //     AND p.typeId = 1
         // )
         List<Owner> owners = query.selectFrom(o)
             .where(
@@ -57,7 +57,7 @@ public class OneToManyTest {
                 .from(p)
                 .where(
                     p.owner.id.eq(o.id),
-                    p.type.id.eq(1)
+                    p.typeId.eq(1)
                 )
                 .exists()
             )
@@ -79,13 +79,13 @@ public class OneToManyTest {
         // WHERE o.id IN (
         //   SELECT p.owner.id
         //   FROM Pet p
-        //   WHERE p.type.id = 1
+        //   WHERE p.typeId = 1
         // )
         List<Owner> owners = query.selectFrom(o)
             .where(o.id.in(
                 JPAExpressions.select(p.owner.id)
                     .from(p)
-                    .where(p.type.id.eq(1))
+                    .where(p.typeId.eq(1))
             ))
             .fetch();
         for (Owner owner : owners) {

@@ -1,5 +1,6 @@
 package com.github.sooogle.jpademo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,8 +24,11 @@ public class Pet {
 
     private String name;
 
+    @Column(name = "type_id")
+    private Integer typeId;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "type_id", insertable = false, updatable = false)
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)

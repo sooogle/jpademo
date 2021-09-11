@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="290px" preserveAspectRatio="none" style="width:596px;height:290px;background:#FFFFFF;" version="1.1" viewBox="0 0 596 290" width="596px" zoomAndPan="magnify"><defs><filter height="300%" id="f1e2bnlfe6253" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[012922c00e9f39d44d92a92afc094337]
+class PETS--><rect codeLine="10" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="91.9531" id="PETS" style="stroke:#A80036;stroke-width:1.5;" width="92" x="136.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="28" x="168.5" y="23.6016">PETS</text><line style="stroke:#A80036;stroke-width:1.5;" x1="137.5" x2="227.5" y1="31.1328" y2="31.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="142.5" y="45.7676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="137.5" x2="227.5" y1="52.0879" y2="52.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31" x="142.5" y="66.7227">NAME</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="67" x="142.5" y="79.6777">TYPE_ID [FK]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="142.5" y="92.6328">OWNER_ID [FK]</text><!--MD5=[3eff6d197a125bdd80251e396942ccdd]
+class TYPES--><rect codeLine="18" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="66.043" id="TYPES" style="stroke:#A80036;stroke-width:1.5;" width="43" x="7" y="185"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="11" y="201.6016">TYPES</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="49" y1="209.1328" y2="209.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="13" y="223.7676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="8" x2="49" y1="230.0879" y2="230.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31" x="13" y="244.7227">NAME</text><!--MD5=[2e50df16fc21d99edeaedb6d6c015d59]
+class OWNERS--><rect codeLine="24" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="117.8633" id="OWNERS" style="stroke:#A80036;stroke-width:1.5;" width="78" x="85.5" y="159"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="49" x="100" y="175.6016">OWNERS</text><line style="stroke:#A80036;stroke-width:1.5;" x1="86.5" x2="162.5" y1="183.1328" y2="183.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="91.5" y="197.7676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="86.5" x2="162.5" y1="204.0879" y2="204.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="91.5" y="218.7227">FIRST_NAME</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="64" x="91.5" y="231.6777">LAST_NAME</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="91.5" y="244.6328">ADDRESS</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="91.5" y="257.5879">CITY</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="62" x="91.5" y="270.543">TELEPHONE</text><!--MD5=[b91811d058659ac250df02f23d766cee]
+class VISITS--><rect codeLine="34" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="91.9531" id="VISITS" style="stroke:#A80036;stroke-width:1.5;" width="83" x="199" y="172"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="223.5" y="188.6016">VISITS</text><line style="stroke:#A80036;stroke-width:1.5;" x1="200" x2="281" y1="196.1328" y2="196.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="205" y="210.7676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="200" x2="281" y1="217.0879" y2="217.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="205" y="231.7227">PET_ID [FK]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="205" y="244.6777">VISIT_DATE</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="205" y="257.6328">DESCRIPTION</text><!--MD5=[93737825b6f487458107a11e8423a050]
+class PET_DETAILS--><rect codeLine="42" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="66.043" id="PET_DETAILS" style="stroke:#A80036;stroke-width:1.5;" width="81" x="317" y="185"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="75" x="320" y="201.6016">PET_DETAILS</text><line style="stroke:#A80036;stroke-width:1.5;" x1="318" x2="397" y1="209.1328" y2="209.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="323" y="223.7676">PET_ID [FK]</text><line style="stroke:#A80036;stroke-width:1.0;" x1="318" x2="397" y1="230.0879" y2="230.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="323" y="244.7227">BIRTH_DATE</text><!--MD5=[64d8827116e86630ec479603e85a9cf7]
+class VETS--><rect codeLine="48" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="78.998" id="VETS" style="stroke:#A80036;stroke-width:1.5;" width="78" x="393.5" y="13.5"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="418" y="30.1016">VETS</text><line style="stroke:#A80036;stroke-width:1.5;" x1="394.5" x2="470.5" y1="37.6328" y2="37.6328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="399.5" y="52.2676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="394.5" x2="470.5" y1="58.5879" y2="58.5879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="399.5" y="73.2227">FIRST_NAME</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="64" x="399.5" y="86.1777">LAST_NAME</text><!--MD5=[5fa874434b848037dea170e7c16f7bc6]
+class SPECIALTIES--><rect codeLine="55" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="66.043" id="SPECIALTIES" style="stroke:#A80036;stroke-width:1.5;" width="75" x="507" y="20"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="510" y="36.6016">SPECIALTIES</text><line style="stroke:#A80036;stroke-width:1.5;" x1="508" x2="581" y1="44.1328" y2="44.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="11" x="513" y="58.7676">ID</text><line style="stroke:#A80036;stroke-width:1.0;" x1="508" x2="581" y1="65.0879" y2="65.0879"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31" x="513" y="79.7227">NAME</text><!--MD5=[2b42559ed6467155808bbf57b1865f7f]
+class VET_SPECIALTIES--><rect codeLine="61" fill="#FEFECE" filter="url(#f1e2bnlfe6253)" height="66.043" id="VET_SPECIALTIES" style="stroke:#A80036;stroke-width:1.5;" width="110" x="433.5" y="185"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="98" x="439.5" y="201.6016">VET_SPECIALTIES</text><line style="stroke:#A80036;stroke-width:1.5;" x1="434.5" x2="542.5" y1="209.1328" y2="209.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="439.5" y="223.7676">VET_ID [FK]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="98" x="439.5" y="236.7227">SPECIALTY_ID [FK]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="434.5" x2="542.5" y1="243.043" y2="243.043"/><!--MD5=[b37ef5c937c7229a6e79b46020212474]
+link PETS to TYPES--><path codeLine="66" d="M128.29,53 C128.29,53 28.5,53 28.5,53 C28.5,53 28.5,176.61 28.5,176.61 " fill="none" id="PETS-TYPES" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="32.5" x2="24.5" y1="180.61" y2="180.61"/><line style="stroke:#A80036;stroke-width:1.0;" x1="32.5" x2="24.5" y1="177.61" y2="177.61"/><line style="stroke:#A80036;stroke-width:1.0;" x1="28.5" x2="28.5" y1="176.61" y2="184.61"/><line style="stroke:#A80036;stroke-width:1.0;" x1="128.29" x2="136.29" y1="53" y2="47"/><line style="stroke:#A80036;stroke-width:1.0;" x1="128.29" x2="136.29" y1="53" y2="59"/><line style="stroke:#A80036;stroke-width:1.0;" x1="128.29" x2="136.29" y1="53" y2="53"/><ellipse cx="122.29" cy="53" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><!--MD5=[bd8bb8da4abe0aadd48956c549e05492]
+link PETS to OWNERS--><path codeLine="67" d="M150,107.4 C150,107.4 150,150.98 150,150.98 " fill="none" id="PETS-OWNERS" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="154" x2="146" y1="154.98" y2="154.98"/><line style="stroke:#A80036;stroke-width:1.0;" x1="154" x2="146" y1="151.98" y2="151.98"/><line style="stroke:#A80036;stroke-width:1.0;" x1="150" x2="150" y1="150.98" y2="158.98"/><line style="stroke:#A80036;stroke-width:1.0;" x1="150" x2="144" y1="107.4" y2="99.4"/><line style="stroke:#A80036;stroke-width:1.0;" x1="150" x2="156" y1="107.4" y2="99.4"/><line style="stroke:#A80036;stroke-width:1.0;" x1="150" x2="150" y1="107.4" y2="99.4"/><ellipse cx="150" cy="113.4" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><!--MD5=[42e7718dcd8793435fd92a7ec6be945b]
+link PETS to VISITS--><path codeLine="68" d="M213.75,107.4 C213.75,107.4 213.75,163.95 213.75,163.95 " fill="none" id="PETS-VISITS" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="213.75" x2="219.75" y1="163.95" y2="171.95"/><line style="stroke:#A80036;stroke-width:1.0;" x1="213.75" x2="207.75" y1="163.95" y2="171.95"/><line style="stroke:#A80036;stroke-width:1.0;" x1="213.75" x2="213.75" y1="163.95" y2="171.95"/><ellipse cx="213.75" cy="157.95" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="209.75" x2="217.75" y1="103.4" y2="103.4"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="209.75" x2="217.75" y1="106.4" y2="106.4"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="213.75" x2="213.75" y1="107.4" y2="99.4"/><!--MD5=[9797bafb2707662241bb9fc9214566b5]
+link PETS to PET_DETAILS--><path codeLine="69" d="M236.79,53 C236.79,53 355.25,53 355.25,53 C355.25,53 355.25,176.61 355.25,176.61 " fill="none" id="PETS-PET_DETAILS" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="355.25" x2="355.25" y1="173.61" y2="184.61"/><ellipse cx="355.25" cy="173.61" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="359.25" x2="351.25" y1="180.61" y2="180.61"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="232.79" x2="232.79" y1="57" y2="49"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="235.79" x2="235.79" y1="57" y2="49"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="236.79" x2="228.79" y1="53" y2="53"/><!--MD5=[9459169e17f823a6e404f54e73311ba7]
+link VETS to VET_SPECIALTIES--><path codeLine="70" d="M452.5,100.52 C452.5,100.52 452.5,176.91 452.5,176.91 " fill="none" id="VETS-VET_SPECIALTIES" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="452.5" x2="458.5" y1="176.91" y2="184.91"/><line style="stroke:#A80036;stroke-width:1.0;" x1="452.5" x2="446.5" y1="176.91" y2="184.91"/><line style="stroke:#A80036;stroke-width:1.0;" x1="452.5" x2="452.5" y1="176.91" y2="184.91"/><ellipse cx="452.5" cy="170.91" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="448.5" x2="456.5" y1="96.52" y2="96.52"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="448.5" x2="456.5" y1="99.52" y2="99.52"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="452.5" x2="452.5" y1="100.52" y2="92.52"/><!--MD5=[f2a6f80bede8a9b5bf4e388332be1cc9]
+link SPECIALTIES to VET_SPECIALTIES--><path codeLine="71" d="M525.25,94.39 C525.25,94.39 525.25,176.94 525.25,176.94 " fill="none" id="SPECIALTIES-VET_SPECIALTIES" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="525.25" x2="531.25" y1="176.94" y2="184.94"/><line style="stroke:#A80036;stroke-width:1.0;" x1="525.25" x2="519.25" y1="176.94" y2="184.94"/><line style="stroke:#A80036;stroke-width:1.0;" x1="525.25" x2="525.25" y1="176.94" y2="184.94"/><ellipse cx="525.25" cy="170.94" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="521.25" x2="529.25" y1="90.39" y2="90.39"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="521.25" x2="529.25" y1="93.39" y2="93.39"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="525.25" x2="525.25" y1="94.39" y2="86.39"/><!--MD5=[c28938f1c5d90c53af8959bd0b64216d]
+@startuml
+' configure font
+skinparam defaultFontName SansSerif
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity PETS {
+  ID
+  - -
+  NAME
+  TYPE_ID [FK]
+  OWNER_ID [FK]
+}
+
+entity TYPES {
+  ID
+  - -
+  NAME
+}
+
+entity OWNERS {
+  ID
+  - -
+  FIRST_NAME
+  LAST_NAME
+  ADDRESS
+  CITY
+  TELEPHONE
+}
+
+entity VISITS {
+  ID
+  - -
+  PET_ID [FK]
+  VISIT_DATE
+  DESCRIPTION
+}
+
+entity PET_DETAILS {
+  PET_ID [FK]
+  - -
+  BIRTH_DATE
+}
+
+entity VETS {
+  ID
+  - -
+  FIRST_NAME
+  LAST_NAME
+}
+
+entity SPECIALTIES {
+  ID
+  - -
+  NAME
+}
+
+entity VET_SPECIALTIES {
+  VET_ID [FK]
+  SPECIALTY_ID [FK]
+}
+
+PETS }o..|| TYPES
+PETS }o..|| OWNERS
+PETS ||..o{ VISITS
+PETS ||..o| PET_DETAILS
+VETS ||..o{ VET_SPECIALTIES
+SPECIALTIES ||..o{ VET_SPECIALTIES
+
+@enduml
+
+@startuml
+skinparam defaultFontName SansSerif
+
+hide circle
+
+skinparam linetype ortho
+
+entity PETS {
+  ID
+  - -
+  NAME
+  TYPE_ID [FK]
+  OWNER_ID [FK]
+}
+
+entity TYPES {
+  ID
+  - -
+  NAME
+}
+
+entity OWNERS {
+  ID
+  - -
+  FIRST_NAME
+  LAST_NAME
+  ADDRESS
+  CITY
+  TELEPHONE
+}
+
+entity VISITS {
+  ID
+  - -
+  PET_ID [FK]
+  VISIT_DATE
+  DESCRIPTION
+}
+
+entity PET_DETAILS {
+  PET_ID [FK]
+  - -
+  BIRTH_DATE
+}
+
+entity VETS {
+  ID
+  - -
+  FIRST_NAME
+  LAST_NAME
+}
+
+entity SPECIALTIES {
+  ID
+  - -
+  NAME
+}
+
+entity VET_SPECIALTIES {
+  VET_ID [FK]
+  SPECIALTY_ID [FK]
+}
+
+PETS }o..|| TYPES
+PETS }o..|| OWNERS
+PETS ||..o{ VISITS
+PETS ||..o| PET_DETAILS
+VETS ||..o{ VET_SPECIALTIES
+SPECIALTIES ||..o{ VET_SPECIALTIES
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 21:40:07 JST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg>

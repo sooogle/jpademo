@@ -54,7 +54,7 @@ public class OneToManyTest {
     @DisplayName("3.3. OneToManyの関連エンティティを検索条件にする（EXISTSを利用）")
     void testWhereExists() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        String jpql = "SELECT o FROM Owner o WHERE EXISTS (SELECT 1 FROM Pet p WHERE p.owner = o AND p.type.id = :typeId)";
+        String jpql = "SELECT o FROM Owner o WHERE EXISTS (SELECT 1 FROM Pet p WHERE p.owner = o AND p.typeId = :typeId)";
         List<Owner> owners = em.createQuery(jpql, Owner.class).setParameter("typeId", 1).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner);
@@ -65,7 +65,7 @@ public class OneToManyTest {
     @DisplayName("3.4. OneToManyの関連エンティティを検索条件にする（INを利用）")
     void testWhereIn() {
         // typeId=1のPet（ネコ）を飼っているOwnerを検索
-        String jpql = "SELECT o FROM Owner o WHERE o.id IN (SELECT p.owner.id FROM Pet p WHERE p.type.id = :typeId)";
+        String jpql = "SELECT o FROM Owner o WHERE o.id IN (SELECT p.owner.id FROM Pet p WHERE p.typeId = :typeId)";
         List<Owner> owners = em.createQuery(jpql, Owner.class).setParameter("typeId", 1).getResultList();
         for (Owner owner : owners) {
             System.out.println("owner = " + owner);

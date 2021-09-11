@@ -10,9 +10,9 @@ JPA のサンプルコード集
 
 ### テストデータ
 
-[spring-petclinic](https://github.com/spring-projects/spring-petclinic) のデータを一部改変して利用しています ([DDL](https://github.com/sooogle/jpademo/blob/main/src/main/resources/db/migration/V1__schema.sql) , [データ](https://github.com/sooogle/jpademo/blob/main/src/main/resources/db/migration/V2__data.sql))
+[spring-petclinic](https://github.com/spring-projects/spring-petclinic) のデータを一部改変して利用しています ([DDL](https://github.com/sooogle/jpademo/blob/main/src/main/resources/db/migration/V1__schema.sql) , [データ](https://github.com/sooogle/jpademo/blob/main/src/main/resources/db/migration/R__data.sql))
 
-![ER図](erd.png)
+![ER図](erd.svg)
 
 #### PETS
 

@@ -1,11 +1,10 @@
-package com.github.sooogle.jpademo.em;
+package com.github.sooogle.jpademo.entitymanager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.sooogle.jpademo.entity.Owner;
 import com.github.sooogle.jpademo.entity.Pet;
 import com.github.sooogle.jpademo.entity.PetDetail;
-import com.github.sooogle.jpademo.entity.Type;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -34,7 +33,7 @@ public class OneToOneTest {
     void testMapsId() {
         var pet = new Pet();
         pet.setName("Tama");
-        pet.setType(em.getReference(Type.class, 1));
+        pet.setTypeId(1);
         pet.setOwner(em.getReference(Owner.class, 1));
         var petDetail = new PetDetail();
         petDetail.setPet(pet);
